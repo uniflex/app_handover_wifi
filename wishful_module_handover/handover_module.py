@@ -19,26 +19,35 @@ class HandoverModule(wishful_controller.ControllerUpiModule):
 
 
     @wishful_controller.bind_function(upis.global_upi.perform_hard_handover)
-    def perform_hard_handover(self, wifi_intf, wlan_inject_iface, sta_mac_addr, sta_ip_addr, servingAP, servingAP_ip_addr, servingAP_channel,
-                           servingAP_bssid, targetAP, targetAP_ip_addr, targetAP_channel, gateway):
+    def perform_hard_handover(self, wifi_intf, wlan_inject_iface, sta_mac_addr, sta_ip_addr,
+                             servingAP, servingAP_ip_addr, servingAP_channel, servingAP_bssid,
+                             targetAP, targetAP_ip_addr, targetAP_channel, gateway):
+
         self.log.debug("Hard handover of station: {} from {} to {}".format(sta_mac_addr, servingAP_ip_addr, targetAP_ip_addr))
 
-        return self.perform_STA_handover(wifi_intf, wlan_inject_iface, sta_mac_addr, sta_ip_addr, servingAP, servingAP_ip_addr, servingAP_channel,
-                           servingAP_bssid, targetAP, targetAP_ip_addr, targetAP_channel, gateway, HandoverTypes.Hard_BL)
+        return self.perform_STA_handover(wifi_intf, wlan_inject_iface, sta_mac_addr, sta_ip_addr,
+                                         servingAP, servingAP_ip_addr, servingAP_channel, servingAP_bssid,
+                                         targetAP, targetAP_ip_addr, targetAP_channel, gateway, HandoverTypes.Hard_BL)
 
     @wishful_controller.bind_function(upis.global_upi.perform_soft_handover)
-    def perform_soft_handover(self, wifi_intf, wlan_inject_iface, sta_mac_addr, sta_ip_addr, servingAP, servingAP_ip_addr, servingAP_channel,
-                           servingAP_bssid, targetAP, targetAP_ip_addr, targetAP_channel, gateway):
+    def perform_soft_handover(self, wifi_intf, wlan_inject_iface, sta_mac_addr, sta_ip_addr,
+                             servingAP, servingAP_ip_addr, servingAP_channel, servingAP_bssid,
+                             targetAP, targetAP_ip_addr, targetAP_channel, gateway):
+
         self.log.debug("Soft handover of station: {} from {} to {}".format(sta_mac_addr, servingAP_ip_addr, targetAP_ip_addr))
 
-        return self.perform_STA_handover(wifi_intf, wlan_inject_iface, sta_mac_addr, sta_ip_addr, servingAP, servingAP_ip_addr, servingAP_channel,
-                           servingAP_bssid, targetAP, targetAP_ip_addr, targetAP_channel, gateway, HandoverTypes.Soft_CSA)
+        return self.perform_STA_handover(wifi_intf, wlan_inject_iface, sta_mac_addr, sta_ip_addr,
+                                         servingAP, servingAP_ip_addr, servingAP_channel, servingAP_bssid,
+                                         targetAP, targetAP_ip_addr, targetAP_channel, gateway, HandoverTypes.Soft_CSA)
 
 
-    def perform_STA_handover(self, wifi_intf, wlan_inject_iface, sta_mac_addr, sta_ip_addr, servingAP, servingAP_ip_addr, servingAP_channel,
-                           servingAP_bssid, targetAP, targetAP_ip_addr, targetAP_channel, gateway, hoType=HandoverTypes.Hard_BL):
+    def perform_STA_handover(self, wifi_intf, wlan_inject_iface, sta_mac_addr, sta_ip_addr,
+                             servingAP, servingAP_ip_addr, servingAP_channel, servingAP_bssid,
+                             targetAP, targetAP_ip_addr, targetAP_channel, gateway, hoType=HandoverTypes.Hard_BL):
         """
-        Performing an infrastructure-initiated handover of a client STA.
+        Performing an infrastructure-initiated handover of a client STA using either:
+        - hard HO scheme,
+        - soft HO scheme
         """
 
         self.log.info('Function: performSTAHandover')
