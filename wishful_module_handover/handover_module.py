@@ -20,7 +20,7 @@ class HandoverModule(wishful_controller.ControllerModule):
         super(HandoverModule, self).__init__(controller)
         self.log = logging.getLogger('wifi_handover_module.main')
 
-    @wishful_controller.bind_function(upis.global_upi.perform_handover)
+    @wishful_controller.bind_function(upis.net_func.perform_handover)
     def perform_handover(self, wifi_intf, servingAP, targetAP, sta_mac_addr, **kwargs):
 
         """
@@ -103,7 +103,7 @@ class HandoverModule(wishful_controller.ControllerModule):
         return True
 
 
-    @wishful_controller.bind_function(upis.global_upi.get_servingAP)
+    @wishful_controller.bind_function(upis.net_func.get_servingAP)
     def is_associated_with(self, nodes, wifi_intf, sta_mac_addr):
         """
         Estimates the AP which serves the given STA. Note: if an STA is associated with multiple APs the one with the
