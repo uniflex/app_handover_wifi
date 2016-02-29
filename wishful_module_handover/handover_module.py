@@ -15,7 +15,7 @@ class HandoverTypes:
     This is IEEE 802.11 specific -> todo: rename it into handover_wifi
 '''
 @wishful_controller.build_module
-class HandoverModule(wishful_controller.ControllerUpiModule):
+class HandoverModule(wishful_controller.ControllerModule):
     def __init__(self, controller):
         super(HandoverModule, self).__init__(controller)
         self.log = logging.getLogger('wifi_handover_module.main')
