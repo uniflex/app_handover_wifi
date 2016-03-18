@@ -9,7 +9,7 @@ __version__ = "0.1.0"
 __email__ = "{gawlowicz, zubow}@tkn.tu-berlin.de"
 
 class HandoverTypes:
-    Hard_BL, Soft_CSA = range(2)
+    Hard_BL, Soft_CSA = list(range(2))
 
 '''
     This is IEEE 802.11 specific -> todo: rename it into handover_wifi
