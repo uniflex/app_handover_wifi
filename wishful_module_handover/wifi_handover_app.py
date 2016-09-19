@@ -10,7 +10,8 @@ __email__ = "{zubow}@tkn.tu-berlin.de"
 
 
 '''
-    Handover module for IEEE 802.11 with two submodules: i) soft and ii) hard HO.
+    Handover app for IEEE 802.11.
+    Two modes are supported: i) soft and ii) hard HO.
 '''
 @wishful_module.build_module
 class WiFiHandoverModule(wishful_module.ControllerModule):

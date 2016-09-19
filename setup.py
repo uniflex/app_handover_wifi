@@ -13,7 +13,7 @@ setup(
     author='Anatolij Zubow, Piotr Gawlowicz',
     author_email='zubow|gawlowicz@tu-berlin.de',
     description='WiFi (802.11) Handover Module',
-    long_description='Implementation of the handover app for WiFi.',
+    long_description='Implementation of the handover app for different wireless technologies: i) IEEE 802.11 WiFi, ii) ...',
     keywords='wireless control',
     install_requires=[]
 )
