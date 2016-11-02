@@ -1,7 +1,8 @@
 import logging
 import wishful_framework as wishful_module
 import wishful_upis as upis
-from wishful_framework.classes import exceptions
+from wishful_agent.core import events
+
 
 __author__ = "Anatolij Zubow"
 __copyright__ = "Copyright (c) 2015, Technische Universitat Berlin"
@@ -31,7 +32,7 @@ class WiFiHandoverModule(wishful_module.ControllerModule):
         self.running = False
 
 
-    @wishful_module.on_event(upis.mgmt.NewNodeEvent)
+    @wishful_module.on_event(events.NewNodeEvent)
     def add_node(self, event):
         node = event.node
 
@@ -43,8 +44,8 @@ class WiFiHandoverModule(wishful_module.ControllerModule):
         self.nodes[node.uuid] = node
 
 
-    @wishful_module.on_event(upis.mgmt.NodeExitEvent)
-    @wishful_module.on_event(upis.mgmt.NodeLostEvent)
+    @wishful_module.on_event(events.NodeExitEvent)
+    @wishful_module.on_event(events.NodeLostEvent)
     def remove_node(self, event):
         self.log.info("Node lost".format())
         node = event.node
