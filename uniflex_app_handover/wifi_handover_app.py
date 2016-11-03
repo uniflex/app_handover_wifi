@@ -1,7 +1,7 @@
 import logging
-import wishful_framework as wishful_module
 import wishful_upis as upis
-from wishful_agent.core import events
+from uniflex.core import modules
+from uniflex.core import events
 
 
 __author__ = "Anatolij Zubow"
@@ -14,25 +14,26 @@ __email__ = "{zubow}@tkn.tu-berlin.de"
     Handover app for IEEE 802.11.
     Two modes are supported: i) soft and ii) hard HO.
 '''
-@wishful_module.build_module
-class WiFiHandoverModule(wishful_module.ControllerModule):
+
+
+@modules.build_module
+class WiFiHandoverModule(modules.ControllerModule):
     def __init__(self, controller):
         super(WiFiHandoverModule, self).__init__()
         self.log = logging.getLogger('wifi_handover_module.main')
         self.nodes = {}
 
-    @wishful_module.on_start()
+    @modules.on_start()
     def start_ho_module(self):
         self.log.debug("Start HO module".format())
         self.running = True
 
-    @wishful_module.on_exit()
+    @modules.on_exit()
     def stop_ho_module(self):
         self.log.debug("Stop HO module".format())
         self.running = False
 
-
-    @wishful_module.on_event(events.NewNodeEvent)
+    @modules.on_event(events.NewNodeEvent)
     def add_node(self, event):
         node = event.node
 
@@ -43,9 +44,8 @@ class WiFiHandoverModule(wishful_module.ControllerModule):
                       .format(node.uuid, node.local))
         self.nodes[node.uuid] = node
 
-
-    @wishful_module.on_event(events.NodeExitEvent)
-    @wishful_module.on_event(events.NodeLostEvent)
+    @modules.on_event(events.NodeExitEvent)
+    @modules.on_event(events.NodeLostEvent)
     def remove_node(self, event):
         self.log.info("Node lost".format())
         node = event.node
@@ -55,12 +55,12 @@ class WiFiHandoverModule(wishful_module.ControllerModule):
             self.log.info("Node: {}, Local: {} removed reason: {}"
                           .format(node.uuid, node.local, reason))
 
-
-    @wishful_module.on_event(upis.wifi.WiFiTriggerHandoverRequestEvent)
+    @modules.on_event(upis.wifi.WiFiTriggerHandoverRequestEvent)
     def perform_handover(self, event):
 
         """
-        Performing an infrastructure-initiated handover of a client STA using either:
+        Performing an infrastructure-initiated handover
+        of a client STA using either:
         - ho_type = 0: hard HO scheme,
         - ho_type = 1: soft HO scheme
         """

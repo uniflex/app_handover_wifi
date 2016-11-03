@@ -1,4 +1,4 @@
-WiSHFUL Handover Module for WIFI
+UniFlex Handover App for WIFI
 ===============================
 
 This app implements an infrastructure-initiated handover scheme for 
