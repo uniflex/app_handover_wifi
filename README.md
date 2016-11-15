@@ -10,6 +10,7 @@ The paper and slides describing BigAP can be found here:
 [slides](https://www2.informatik.hu-berlin.de/~zubow/BIGAP_talk_noms.pdf "Talk slides")
 
 ## Installation
+To install UniFlex framework with all available modules, please go through all steps in [manifest](https://github.com/uniflex/manifests) repository.
 
 You have to use our patched version of hostapd and iw. Please install 
 them from src/ or use the binaries from bin/
