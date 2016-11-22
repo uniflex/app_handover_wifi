@@ -17,7 +17,7 @@ __email__ = "{zubow}@tkn.tu-berlin.de"
 
 
 class WiFiHandoverModule(modules.ControlApplication):
-    def __init__(self, controller):
+    def __init__(self):
         super(WiFiHandoverModule, self).__init__()
         self.log = logging.getLogger('wifi_handover_module.main')
         self.nodes = {}
